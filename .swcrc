@@ -11,9 +11,10 @@
     "paths": {
       "@/src/*": ["src/*"],
       "@/app/*": ["src/app/*"],
-      "@/contexts/*": ["src/contexts/*"],
-      "@/shared/*": ["src/contexts/shared/*"],
-      "@/tests/*": ["tests/*"]
+      "@/tests/*": ["tests/*"],
+      "@/routes/*": ["src/routes/*"],
+      "@/persistence/*": ["src/persistence/*"],
+      "@/controllers/*": ["src/controllers/*"]
     },
     "target": "es2022"
   },
