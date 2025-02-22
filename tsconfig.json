@@ -11,6 +11,10 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
 
+    /* For type ORM decorators */
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
