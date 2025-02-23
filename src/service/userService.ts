@@ -8,12 +8,7 @@ export default class UserService {
     this.userDAO = new UserDAO();
   }
 
-  async createUser(user: User): Promise<User> {
-    console.log(user);
-    return this.userDAO.save(user);
-  }
-
-  async saveOrUpdateUser(user: User): Promise<User> {
+  async saveUpdateUser(user: User): Promise<User> {
     return this.userDAO.save(user);
   }
 
@@ -23,5 +18,9 @@ export default class UserService {
 
   async findAllUsers(): Promise<User[]> {
     return this.userDAO.findAll();
+  }
+
+  async removeUser(user: User): Promise<void> {
+    this.userDAO.remove(user);
   }
 }
