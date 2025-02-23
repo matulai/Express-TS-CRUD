@@ -23,4 +23,8 @@ export default class UserService {
   async removeUser(user: User): Promise<void> {
     this.userDAO.remove(user);
   }
+
+  async clearAll(): Promise<void> {
+    this.userDAO.removeAll();
+  }
 }
