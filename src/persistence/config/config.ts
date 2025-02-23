@@ -10,5 +10,6 @@ export const config: DataSourceOptions = {
   database: process.env.DB_DATABASE,
   synchronize: true,
   logging: true,
+  ssl: false,
   entities: [User], // Aquí defines los modelos (entidades)
 };

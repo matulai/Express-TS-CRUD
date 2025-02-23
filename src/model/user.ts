@@ -3,15 +3,15 @@ import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export default class User {
   @PrimaryGeneratedColumn()
-  id!: number;
+  id?: number;
 
-  @Column()
+  @Column({ type: "varchar", length: 255 })
   name: string;
 
-  @Column()
+  @Column({ type: "int" })
   age: number;
 
-  @Column()
+  @Column({ type: "varchar", length: 50 })
   gender: string;
 
   constructor(name: string, age: number, gender: string) {
