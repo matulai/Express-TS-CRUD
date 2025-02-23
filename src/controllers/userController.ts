@@ -1,4 +1,5 @@
 import type { Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
 import User from "@/model/user.js";
 import UserService from "@/service/userService.js";
 
@@ -9,14 +10,25 @@ export default class UserController {
     this.userService = new UserService();
   }
 
-  async saveUpdateUser(req: Request, res: Response): Promise<void> {
+  async saveUser(req: Request, res: Response): Promise<void> {
     console.log(req.body);
     try {
       const user: User = await this.userService.saveUpdateUser(req.body);
 
-      res.status(201).json(user);
+      res.status(StatusCodes.CREATED).json(user);
     } catch (error) {
-      res.status(409).json({ message: error });
+      res.status(StatusCodes.NOT_FOUND).json({ message: error });
+    }
+  }
+
+  async updateUser(req: Request, res: Response): Promise<void> {
+    console.log(req.body);
+    try {
+      const user: User = await this.userService.saveUpdateUser(req.body);
+
+      res.status(StatusCodes.OK).json(user);
+    } catch (error) {
+      res.status(StatusCodes.CONFLICT).json({ message: error });
     }
   }
 
@@ -24,9 +36,9 @@ export default class UserController {
     try {
       const users: User[] = await this.userService.findAllUsers();
 
-      res.status(200).json(users);
+      res.status(StatusCodes.OK).json(users);
     } catch (error) {
-      res.status(500).json({ message: error });
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
     }
   }
 
@@ -36,9 +48,9 @@ export default class UserController {
 
       const user: User = await this.userService.findUserById(id);
 
-      res.status(200).json(user);
+      res.status(StatusCodes.OK).json(user);
     } catch (error) {
-      res.status(404).json({ message: error });
+      res.status(StatusCodes.NOT_FOUND).json({ message: error });
     }
   }
 
@@ -46,9 +58,9 @@ export default class UserController {
     try {
       await this.userService.removeUser(req.body);
 
-      res.status(200).json({ message: "action successs" });
+      res.status(StatusCodes.OK).json({ message: "action successs" });
     } catch (error) {
-      res.status(404).json({ message: error });
+      res.status(StatusCodes.NOT_FOUND).json({ message: error });
     }
   }
 }
