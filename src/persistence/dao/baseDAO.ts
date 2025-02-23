@@ -1,3 +1,6 @@
+import "@/persistence/dataSource.js";
+import "reflect-metadata";
+
 import { Repository, DataSource } from "typeorm";
 
 import type { ObjectLiteral } from "typeorm";
@@ -25,5 +28,9 @@ export default abstract class BaseDAO<T extends ObjectLiteral> {
 
   async findAll(): Promise<T[]> {
     return await this.repository.find();
+  }
+
+  async removeAll(): Promise<void> {
+    await this.repository.clear();
   }
 }
