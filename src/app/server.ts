@@ -15,6 +15,9 @@ export default class Server {
       res.send("hello world");
     });
     this.app.use("/user", userRouter);
+    this.app.use("*", (_req, res) => {
+      res.status(404).json({ error: "Not found" });
+    });
   }
 
   async start(): Promise<void> {
